@@ -31,7 +31,7 @@ class ListExport implements FromCollection, WithTitle, WithHeadings, WithEvents
             return collect([
                 'name' => $table->name,
                 'comment' => $table->comment,
-                'model' => ($table->comment) ? sprintf('Ap\Models\%s', Str::studly($table->name)) : ''
+                'model' => ($table->comment) ? sprintf('App\Models\%s', Str::studly($table->name)) : ''
             ]);
         });
     }
