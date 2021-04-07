@@ -2,6 +2,7 @@
 
 namespace ShibuyaKosuke\LaravelDdlExport\Exports;
 
+use Illuminate\Support\Str;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -29,7 +30,8 @@ class ListExport implements FromCollection, WithTitle, WithHeadings, WithEvents
         return $this->tables->map(function (TableInterface $table) {
             return collect([
                 'name' => $table->name,
-                'comment' => $table->comment
+                'comment' => $table->comment,
+                'model' => sprintf('Ap\Models\%s', Str::studly($table->name))
             ]);
         });
     }
@@ -53,7 +55,8 @@ class ListExport implements FromCollection, WithTitle, WithHeadings, WithEvents
     {
         return [
             '物理名',
-            '論理名'
+            '論理名',
+            'Model'
         ];
     }
 }
