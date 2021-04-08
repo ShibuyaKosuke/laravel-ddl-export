@@ -55,4 +55,19 @@ class MysqlTable extends Model implements TableInterface
     {
         return $this->hasMany(MysqlColumn::class, 'TABLE_NAME', 'TABLE_NAME');
     }
+
+    public function indexes(): HasMany
+    {
+        return $this->hasMany(MysqlIndex::class, 'TABLE_NAME', 'TABLE_NAME');
+    }
+
+    public function referencing(): HasMany
+    {
+        return $this->hasMany(MysqlConstraint::class, 'table_name', 'TABLE_NAME');
+    }
+
+    public function referenced(): HasMany
+    {
+        return $this->hasMany(MysqlConstraint::class, 'referenced_table_name', 'TABLE_NAME');
+    }
 }

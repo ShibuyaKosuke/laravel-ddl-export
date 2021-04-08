@@ -30,7 +30,11 @@ class DbUtilitiesCommand extends Command
     {
         CreateView::up();
 
-        (new DdlExport($this->getOutput(), Table::all()))->store('ddl.xlsx');
+        $tables = Table::all();
+//        dd($tables->first()->referencing);
+//        dd($ref->toSql())
+
+        (new DdlExport($this->getOutput(), $tables))->store('ddl.xlsx');
 
         CreateView::down();
     }
