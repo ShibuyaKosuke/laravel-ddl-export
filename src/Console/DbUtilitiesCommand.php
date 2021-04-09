@@ -21,7 +21,7 @@ class DbUtilitiesCommand extends Command
      *
      * @var string
      */
-    protected $description = '';
+    protected $description = 'Export DDL by Database.';
 
     /**
      * @return void
