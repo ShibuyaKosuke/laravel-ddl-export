@@ -96,10 +96,10 @@
                     {{ $index->column_name }}
                 </td>
                 <td>
-                    @if($index->constraint_type === 'PRIMARY KEY') Yes @endif
+                    @if($index->isPrimary()) Yes @endif
                 </td>
                 <td>
-                    @if($index->constraint_type === 'UNIQUE') Yes @endif
+                    @if($index->isUnique()) Yes @endif
                 </td>
                 <td></td>
             </tr>

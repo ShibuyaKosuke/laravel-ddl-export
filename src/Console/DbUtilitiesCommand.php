@@ -31,8 +31,6 @@ class DbUtilitiesCommand extends Command
         CreateView::up();
 
         $tables = Table::all();
-//        dd($tables->first()->referencing);
-//        dd($ref->toSql())
 
         (new DdlExport($this->getOutput(), $tables))->store('ddl.xlsx');
 

@@ -22,4 +22,14 @@ class PostgresqlIndex extends Model implements IndexInterface
             });
         });
     }
+
+    public function isPrimary(): bool
+    {
+        return $this->constraint_type === 'PRIMARY KEY';
+    }
+
+    public function isUnique(): bool
+    {
+        return $this->constraint_type === 'UNIQUE';
+    }
 }
