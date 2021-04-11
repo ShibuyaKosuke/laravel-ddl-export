@@ -1,6 +1,8 @@
 # laravel-ddl-export
 
-Export Table definition to spreadsheet by artisan command
+Export Table definition to spreadsheet by artisan command.
+
+For MySQL, PostgreSQL
 
 ## Install 
 
