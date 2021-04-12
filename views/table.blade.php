@@ -1,35 +1,35 @@
 <div>
 
-    <h3>テーブル情報</h3>
+    <h3>{{ __('ddl::ddl.table.title') }}</h3>
 
     <table>
         <tbody>
         <tr>
-            <th style="background-color: yellowgreen" colspan="2">システム名</th>
+            <th style="background-color: yellowgreen" colspan="2">{{ __('ddl::ddl.table.app_name') }}</th>
             <td colspan="2">{{ config('app.name') }}</td>
-            <th style="background-color: #D3F9D8">作成者</th>
+            <th style="background-color: #D3F9D8">{{ __('ddl::ddl.table.creator') }}</th>
             <td colspan="2"></td>
         </tr>
         <tr>
-            <th style="background-color: yellowgreen" colspan="2">サブシステム名</th>
+            <th style="background-color: yellowgreen" colspan="2">{{ __('ddl::ddl.table.sub_system') }}</th>
             <td colspan="2"></td>
-            <th style="background-color: #D3F9D8">作成日</th>
+            <th style="background-color: #D3F9D8">{{ __('ddl::ddl.table.created_at') }}</th>
             <td colspan="2">{{ today() }}</td>
         </tr>
         <tr>
-            <th style="background-color: yellowgreen" colspan="2">スキーマ名</th>
+            <th style="background-color: yellowgreen" colspan="2">{{ __('ddl::ddl.table.schema_name') }}</th>
             <td colspan="2">{{ $table->table_schema }}</td>
-            <th style="background-color: #D3F9D8">更新日</th>
+            <th style="background-color: #D3F9D8">{{ __('ddl::ddl.table.updated_at') }}</th>
             <td colspan="2"></td>
         </tr>
         <tr>
-            <th style="background-color: yellowgreen" colspan="2">論理テーブル名</th>
+            <th style="background-color: yellowgreen" colspan="2">{{ __('ddl::ddl.table.logical_name') }}</th>
             <td colspan="2">{{ $table->comment }}</td>
-            <th style="background-color: #D3F9D8">RDBMS</th>
+            <th style="background-color: #D3F9D8">{{ __('ddl::ddl.table.rdbms') }}</th>
             <td colspan="2"></td>
         </tr>
         <tr>
-            <th style="background-color: yellowgreen" colspan="2">物理テーブル名</th>
+            <th style="background-color: yellowgreen" colspan="2">{{ __('ddl::ddl.table.physical_name') }}</th>
             <td colspan="2">{{ $table->name }}</td>
             <th style="background-color: #D3F9D8"></th>
             <td colspan="2"></td>
@@ -41,18 +41,18 @@
 
 <div>
 
-    <h3>カラム情報</h3>
+    <h3>{{ __('ddl::ddl.columns.title') }}</h3>
 
     <table>
         <thead>
         <tr>
-            <th style="background-color: yellowgreen">No.</th>
-            <th style="background-color: yellowgreen">論理名</th>
-            <th style="background-color: yellowgreen">物理名</th>
-            <th style="background-color: yellowgreen">データ型</th>
-            <th style="background-color: yellowgreen">Not Null</th>
-            <th style="background-color: yellowgreen">デフォルト</th>
-            <th style="background-color: yellowgreen">備考</th>
+            <th style="background-color: yellowgreen">{{ __('ddl::ddl.columns.iteration') }}</th>
+            <th style="background-color: yellowgreen">{{ __('ddl::ddl.columns.comment') }}</th>
+            <th style="background-color: yellowgreen">{{ __('ddl::ddl.columns.name') }}</th>
+            <th style="background-color: yellowgreen">{{ __('ddl::ddl.columns.type') }}</th>
+            <th style="background-color: yellowgreen">{{ __('ddl::ddl.columns.not_null') }}</th>
+            <th style="background-color: yellowgreen">{{ __('ddl::ddl.columns.default') }}</th>
+            <th style="background-color: yellowgreen">{{ __('ddl::ddl.columns.extra') }}</th>
         </tr>
         </thead>
         <tbody>
@@ -74,17 +74,17 @@
 
 <div>
 
-    <h3>インデックス情報</h3>
+    <h3>{{ __('ddl::ddl.indexes.title') }}</h3>
 
     <table>
         <thead>
         <tr>
-            <th style="background-color: yellowgreen">No.</th>
-            <th style="background-color: yellowgreen" colspan="2">インデックス情報</th>
-            <th style="background-color: yellowgreen">カラムリスト</th>
-            <th style="background-color: yellowgreen">主キー</th>
-            <th style="background-color: yellowgreen">ユニーク</th>
-            <th style="background-color: yellowgreen">備考</th>
+            <th style="background-color: yellowgreen">{{ __('ddl::ddl.indexes.iteration') }}</th>
+            <th style="background-color: yellowgreen" colspan="2">{{ __('ddl::ddl.indexes.constraint_name') }}</th>
+            <th style="background-color: yellowgreen">{{ __('ddl::ddl.indexes.column_name') }}</th>
+            <th style="background-color: yellowgreen">{{ __('ddl::ddl.indexes.primary') }}</th>
+            <th style="background-color: yellowgreen">{{ __('ddl::ddl.indexes.unique') }}</th>
+            <th style="background-color: yellowgreen">{{ __('ddl::ddl.indexes.extra') }}</th>
         </tr>
         </thead>
         <tbody>
@@ -111,16 +111,16 @@
 
 <div>
 
-    <h3>外部キー情報</h3>
+    <h3>{{ __('ddl::ddl.referencing.title') }}</h3>
 
     <table>
         <thead>
         <tr>
-            <th style="background-color: yellowgreen">No.</th>
-            <th style="background-color: yellowgreen" colspan="2">インデックス情報</th>
-            <th style="background-color: yellowgreen">カラムリスト</th>
-            <th style="background-color: yellowgreen" colspan="2">参照先テーブル名</th>
-            <th style="background-color: yellowgreen">参照先カラムリスト</th>
+            <th style="background-color: yellowgreen">{{ __('ddl::ddl.referencing.iteration') }}</th>
+            <th style="background-color: yellowgreen" colspan="2">{{ __('ddl::ddl.referencing.constraint_name') }}</th>
+            <th style="background-color: yellowgreen">{{ __('ddl::ddl.referencing.referencing_column_name') }}</th>
+            <th style="background-color: yellowgreen" colspan="2">{{ __('ddl::ddl.referencing.referenced_table_name') }}</th>
+            <th style="background-color: yellowgreen">{{ __('ddl::ddl.referencing.referenced_column_name') }}</th>
         </tr>
         </thead>
         <tbody>
@@ -140,16 +140,16 @@
 
 <div>
 
-    <h3>外部キー情報(PK側)</h3>
+    <h3>{{ __('ddl::ddl.referenced.title') }}</h3>
 
     <table>
         <thead>
         <tr>
-            <th style="background-color: yellowgreen">No.</th>
-            <th style="background-color: yellowgreen" colspan="2">インデックス情報</th>
-            <th style="background-color: yellowgreen">カラムリスト</th>
-            <th style="background-color: yellowgreen" colspan="2">参照元テーブル名</th>
-            <th style="background-color: yellowgreen">参照元カラムリスト</th>
+            <th style="background-color: yellowgreen">{{ __('ddl::ddl.referenced.iteration') }}</th>
+            <th style="background-color: yellowgreen" colspan="2">{{ __('ddl::ddl.referenced.constraint_name') }}</th>
+            <th style="background-color: yellowgreen">{{ __('ddl::ddl.referenced.referenced_column_name') }}</th>
+            <th style="background-color: yellowgreen" colspan="2">{{ __('ddl::ddl.referenced.table_name') }}</th>
+            <th style="background-color: yellowgreen">{{ __('ddl::ddl.referenced.referencing_column_name') }}</th>
         </tr>
         </thead>
         <tbody>
