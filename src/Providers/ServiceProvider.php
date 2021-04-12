@@ -7,10 +7,8 @@ use Illuminate\Support\ServiceProvider as BaseProvider;
 use ShibuyaKosuke\LaravelDdlExport\Console\DbUtilitiesCommand;
 use ShibuyaKosuke\LaravelDdlExport\Models\Columns;
 use ShibuyaKosuke\LaravelDdlExport\Models\CreateView;
-use ShibuyaKosuke\LaravelDdlExport\Models\Repositories\MysqlColumn;
 use ShibuyaKosuke\LaravelDdlExport\Models\Repositories\MysqlManageView;
 use ShibuyaKosuke\LaravelDdlExport\Models\Repositories\MysqlTable;
-use ShibuyaKosuke\LaravelDdlExport\Models\Repositories\PostgresqlColumn;
 use ShibuyaKosuke\LaravelDdlExport\Models\Repositories\PostgresqlManageView;
 use ShibuyaKosuke\LaravelDdlExport\Models\Repositories\PostgresqlTable;
 use ShibuyaKosuke\LaravelDdlExport\Models\Table;
@@ -26,7 +24,6 @@ class ServiceProvider extends BaseProvider
         $this->registerCommands();
 
         $tableRepository = null;
-        $columnRepository = null;
 
         $connection = Schema::getConnection();
         if ($connection->getDriverName() === 'pgsql') {
@@ -45,12 +42,13 @@ class ServiceProvider extends BaseProvider
             return new CreateView($constraintRepository);
         });
 
-        $this->loadViewsFrom(__DIR__ . '/../../views', 'ddl');
-    }
+        $this->loadTranslationsFrom(__DIR__ . '/../../translations', 'ddl');
 
-    public function register()
-    {
-        $this->mergeConfigFrom(__DIR__ . '/../../configs/ddl.php', 'ddl');
+        $this->loadViewsFrom(__DIR__ . '/../../views', 'ddl');
+
+        $this->publishes([
+            __DIR__ . '/../../translations' => resource_path('lang/vendor/ddl'),
+        ]);
     }
 
     protected function registerCommands()
