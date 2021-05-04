@@ -13,6 +13,9 @@ use ShibuyaKosuke\LaravelDdlExport\Models\Contracts\IndexInterface;
  */
 class MysqlIndex extends Model implements IndexInterface
 {
+    /**
+     * @var string
+     */
     protected $table = 'information_schema.key_column_usage';
 
     /**

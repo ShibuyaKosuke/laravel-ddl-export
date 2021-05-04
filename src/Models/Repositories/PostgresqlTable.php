@@ -23,6 +23,9 @@ class PostgresqlTable extends Model implements TableInterface
      */
     protected $table = 'information_schema.tables';
 
+    /**
+     * @var string[]
+     */
     protected $appends = [
         'name',
         'comment',
