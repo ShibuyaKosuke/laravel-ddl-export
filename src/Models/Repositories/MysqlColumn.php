@@ -11,6 +11,17 @@ use ShibuyaKosuke\LaravelDdlExport\Models\Table;
 /**
  * Class MysqlColumn
  * @package ShibuyaKosuk\LaravelDdlExport\Models\Repositories
+ * @property-read Table TABLE_NAME
+ * @property-read string COLUMN_NAME
+ * @property-read string COLUMN_KEY
+ * @property-read string COLUMN_TYPE
+ * @property-read string CHARACTER_MAXIMUM_LENGTH
+ * @property-read string IS_NULLABLE
+ * @property-read string COLUMN_DEFAULT
+ * @property-read string COLUMN_COMMENT
+ * @property-read string table_catalog
+ * @property-read string table_name
+ * @property-read string column_name
  */
 class MysqlColumn extends Model implements ColumnInterface
 {
@@ -117,7 +128,7 @@ class MysqlColumn extends Model implements ColumnInterface
     }
 
     /**
-     * @return string|null
+     * @return Builder|Model|object|null
      */
     public function getForeignAttribute()
     {

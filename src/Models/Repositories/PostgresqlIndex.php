@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use ShibuyaKosuke\LaravelDdlExport\Models\Contracts\IndexInterface;
 
+/**
+ * Class PostgresqlIndex
+ * @package ShibuyaKosuke\LaravelDdlExport\Models\Repositories
+ * @property-read string constraint_type
+ */
 class PostgresqlIndex extends Model implements IndexInterface
 {
     protected $table = 'information_schema.table_constraints';

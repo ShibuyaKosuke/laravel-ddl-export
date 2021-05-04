@@ -2,6 +2,10 @@
 
 namespace ShibuyaKosuke\LaravelDdlExport\Models\Contracts;
 
+/**
+ * Interface IndexInterface
+ * @package ShibuyaKosuke\LaravelDdlExport\Models\Contracts
+ */
 interface IndexInterface
 {
     /**

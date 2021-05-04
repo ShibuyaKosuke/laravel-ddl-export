@@ -6,6 +6,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use ShibuyaKosuke\LaravelDdlExport\Models\Contracts\ManageViewInterface;
 
+/**
+ * Class PostgresqlManageView
+ * @package ShibuyaKosuke\LaravelDdlExport\Models\Repositories
+ */
 class PostgresqlManageView implements ManageViewInterface
 {
     /**

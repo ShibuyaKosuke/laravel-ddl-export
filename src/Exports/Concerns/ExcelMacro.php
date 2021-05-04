@@ -5,8 +5,15 @@ namespace ShibuyaKosuke\LaravelDdlExport\Exports\Concerns;
 use Maatwebsite\Excel\Sheet as ExcelSheet;
 use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
 
+/**
+ * Trait ExcelMacro
+ * @package ShibuyaKosuke\LaravelDdlExport\Exports\Concerns
+ */
 trait ExcelMacro
 {
+    /**
+     * @return void
+     */
     public static function setMacro()
     {
         /**

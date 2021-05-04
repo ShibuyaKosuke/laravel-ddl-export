@@ -12,6 +12,16 @@ use ShibuyaKosuke\LaravelDdlExport\Models\Table;
 /**
  * Class PostgresqlColumn
  * @package ShibuyaKosuk\LaravelDdlExport\Models\Repositories
+ * @property-read Table table_name
+ * @property-read string column_key
+ * @property-read string column_name
+ * @property-read string column_type
+ * @property-read string character_maximum_length
+ * @property-read string is_nullable
+ * @property-read string column_default
+ * @property-read string column_comment
+ * @property-read string table_catalog
+ * @property-read string udt_name
  */
 class PostgresqlColumn extends Model implements ColumnInterface
 {
