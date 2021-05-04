@@ -62,7 +62,8 @@ class MysqlTable extends Model implements TableInterface
      */
     public function columns(): HasMany
     {
-        return $this->hasMany(MysqlColumn::class, 'TABLE_NAME', 'TABLE_NAME');
+        return $this->hasMany(MysqlColumn::class, 'TABLE_NAME', 'TABLE_NAME')
+            ->orderBy('ORDINAL_POSITION');
     }
 
     /**

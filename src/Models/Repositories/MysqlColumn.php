@@ -22,6 +22,7 @@ use ShibuyaKosuke\LaravelDdlExport\Models\Table;
  * @property-read string table_catalog
  * @property-read string table_name
  * @property-read string column_name
+ * @property-read string DATA_TYPE
  */
 class MysqlColumn extends Model implements ColumnInterface
 {
@@ -84,7 +85,7 @@ class MysqlColumn extends Model implements ColumnInterface
      */
     public function getTypeAttribute(): string
     {
-        return $this->COLUMN_TYPE;
+        return $this->DATA_TYPE;
     }
 
     /**

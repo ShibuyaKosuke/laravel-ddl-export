@@ -16,16 +16,17 @@ class MysqlType implements TypeInterface
      */
     private $types = [
         'integer' => [
-            'int2',
-            'int4',
-            'int8',
+            'bigint',
+            'mediumint',
+            'smallint',
+            'tinyint',
         ],
         'numeric' => [
             'numeric',
         ],
         'string' => [
             'varchar',
-            'bpchar',
+            'char',
             'text',
         ],
         'boolean' => [
