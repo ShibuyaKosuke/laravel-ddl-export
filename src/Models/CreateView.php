@@ -4,6 +4,10 @@ namespace ShibuyaKosuke\LaravelDdlExport\Models;
 
 use ShibuyaKosuke\LaravelDdlExport\Models\Contracts\ManageViewInterface;
 
+/**
+ * Class CreateView
+ * @package ShibuyaKosuke\LaravelDdlExport\Models
+ */
 class CreateView
 {
     /**
@@ -20,11 +24,17 @@ class CreateView
         $this->repository = $repository;
     }
 
+    /**
+     * @return void
+     */
     public function up()
     {
         $this->repository->up();
     }
 
+    /**
+     * @return void
+     */
     public function down()
     {
         $this->repository->down();

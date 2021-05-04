@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
 use ShibuyaKosuke\LaravelDdlExport\Models\Contracts\ConstraintInterface;
 
+/**
+ * Class MysqlConstraint
+ * @package ShibuyaKosuke\LaravelDdlExport\Models\Repositories
+ */
 class MysqlConstraint extends Model implements ConstraintInterface
 {
     /**
@@ -14,6 +18,9 @@ class MysqlConstraint extends Model implements ConstraintInterface
      */
     protected $table = 'constraints';
 
+    /**
+     * @return void
+     */
     protected static function boot()
     {
         parent::boot();

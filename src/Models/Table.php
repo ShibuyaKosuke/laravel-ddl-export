@@ -34,7 +34,7 @@ class Table
     }
 
     /**
-     * @param $columns
+     * @param mixed $columns
      * @return mixed
      */
     public function get($columns)

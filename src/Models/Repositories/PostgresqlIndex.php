@@ -10,6 +10,9 @@ class PostgresqlIndex extends Model implements IndexInterface
 {
     protected $table = 'information_schema.table_constraints';
 
+    /**
+     * @return void
+     */
     protected static function boot()
     {
         parent::boot();
@@ -23,11 +26,17 @@ class PostgresqlIndex extends Model implements IndexInterface
         });
     }
 
+    /**
+     * @return boolean
+     */
     public function isPrimary(): bool
     {
         return $this->constraint_type === 'PRIMARY KEY';
     }
 
+    /**
+     * @return boolean
+     */
     public function isUnique(): bool
     {
         return $this->constraint_type === 'UNIQUE';

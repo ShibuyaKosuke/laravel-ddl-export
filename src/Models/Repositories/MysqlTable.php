@@ -41,31 +41,49 @@ class MysqlTable extends Model implements TableInterface
         });
     }
 
+    /**
+     * @return string
+     */
     public function getNameAttribute(): string
     {
         return $this->TABLE_NAME;
     }
 
+    /**
+     * @return string
+     */
     public function getCommentAttribute(): string
     {
         return $this->TABLE_COMMENT;
     }
 
+    /**
+     * @return HasMany
+     */
     public function columns(): HasMany
     {
         return $this->hasMany(MysqlColumn::class, 'TABLE_NAME', 'TABLE_NAME');
     }
 
+    /**
+     * @return HasMany
+     */
     public function indexes(): HasMany
     {
         return $this->hasMany(MysqlIndex::class, 'TABLE_NAME', 'TABLE_NAME');
     }
 
+    /**
+     * @return HasMany
+     */
     public function referencing(): HasMany
     {
         return $this->hasMany(MysqlConstraint::class, 'table_name', 'TABLE_NAME');
     }
 
+    /**
+     * @return HasMany
+     */
     public function referenced(): HasMany
     {
         return $this->hasMany(MysqlConstraint::class, 'referenced_table_name', 'TABLE_NAME');
