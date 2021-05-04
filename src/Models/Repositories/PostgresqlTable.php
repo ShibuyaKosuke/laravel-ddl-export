@@ -13,6 +13,8 @@ use ShibuyaKosuke\LaravelDdlExport\Models\Contracts\TableInterface;
  * Class PostgresqlTable
  * @package ShibuyaKosuk\LaravelDdlExport\Models\Repositories
  * @extends Model
+ *
+ * @property-read string table_name
  */
 class PostgresqlTable extends Model implements TableInterface
 {
