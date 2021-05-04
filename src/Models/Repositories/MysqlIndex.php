@@ -9,6 +9,7 @@ use ShibuyaKosuke\LaravelDdlExport\Models\Contracts\IndexInterface;
 /**
  * Class MysqlIndex
  * @package ShibuyaKosuke\LaravelDdlExport\Models\Repositories
+ * @property-read string CONSTRAINT_NAME
  */
 class MysqlIndex extends Model implements IndexInterface
 {
