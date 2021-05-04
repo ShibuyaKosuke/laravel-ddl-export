@@ -13,6 +13,8 @@ use ShibuyaKosuke\LaravelDdlExport\Models\Contracts\TableInterface;
  * Class PostgresqlTable
  * @package ShibuyaKosuk\LaravelDdlExport\Models\Repositories
  * @extends Model
+ *
+ * @property-read string table_name
  */
 class PostgresqlTable extends Model implements TableInterface
 {
@@ -52,11 +54,17 @@ class PostgresqlTable extends Model implements TableInterface
         });
     }
 
+    /**
+     * @return string
+     */
     public function getNameAttribute(): string
     {
         return $this->table_name;
     }
 
+    /**
+     * @return string
+     */
     public function getCommentAttribute(): string
     {
         $row = DB::table('pg_stat_user_tables')
@@ -70,22 +78,34 @@ class PostgresqlTable extends Model implements TableInterface
         return $row->description ?? '';
     }
 
+    /**
+     * @return HasMany
+     */
     public function columns(): HasMany
     {
         return $this->hasMany(PostgresqlColumn::class, 'table_name', 'table_name')
             ->orderBy('ordinal_position', 'asc');
     }
 
+    /**
+     * @return HasMany
+     */
     public function indexes(): HasMany
     {
         return $this->hasMany(PostgresqlIndex::class, 'table_name', 'table_name');
     }
 
+    /**
+     * @return HasMany
+     */
     public function referencing(): HasMany
     {
         return $this->hasMany(PostgresqlConstraint::class, 'table_name', 'table_name');
     }
 
+    /**
+     * @return HasMany
+     */
     public function referenced(): HasMany
     {
         return $this->hasMany(PostgresqlConstraint::class, 'referenced_table_name', 'table_name');

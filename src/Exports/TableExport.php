@@ -12,6 +12,10 @@ use PhpOffice\PhpSpreadsheet\Style\Fill;
 use ShibuyaKosuke\LaravelDdlExport\Exports\Concerns\ExcelMacro;
 use ShibuyaKosuke\LaravelDdlExport\Models\Contracts\TableInterface;
 
+/**
+ * Class TableExport
+ * @package ShibuyaKosuke\LaravelDdlExport\Exports
+ */
 class TableExport implements FromView, WithTitle, WithEvents
 {
     use ExcelMacro;
@@ -20,6 +24,7 @@ class TableExport implements FromView, WithTitle, WithEvents
      * @var TableInterface
      */
     private $table;
+
     /**
      * Cell Border setting
      * @var array
@@ -47,17 +52,32 @@ class TableExport implements FromView, WithTitle, WithEvents
         ],
     ];
 
+    /**
+     * TableExport constructor.
+     * @param TableInterface $table
+     */
     public function __construct(TableInterface $table)
     {
         static::setMacro();
         $this->table = $table;
     }
 
+    /**
+     * @return View
+     */
     public function view(): View
     {
         return view('ddl::table', ['table' => $this->table]);
     }
 
+    /**
+     * @param string $tag
+     * @param mixed $columns
+     * @param mixed $indexes
+     * @param mixed $referencing
+     * @param mixed $referenced
+     * @return array
+     */
     protected function getRanges(string $tag, $columns, $indexes, $referencing, $referenced)
     {
         switch ($tag) {
@@ -110,6 +130,9 @@ class TableExport implements FromView, WithTitle, WithEvents
         }
     }
 
+    /**
+     * @return \Closure[]
+     */
     public function registerEvents(): array
     {
         return [
@@ -144,6 +167,9 @@ class TableExport implements FromView, WithTitle, WithEvents
         ];
     }
 
+    /**
+     * @return string
+     */
     public function title(): string
     {
         return $this->table->name;

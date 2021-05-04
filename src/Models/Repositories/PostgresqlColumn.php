@@ -12,6 +12,16 @@ use ShibuyaKosuke\LaravelDdlExport\Models\Table;
 /**
  * Class PostgresqlColumn
  * @package ShibuyaKosuk\LaravelDdlExport\Models\Repositories
+ * @property-read Table table_name
+ * @property-read string column_key
+ * @property-read string column_name
+ * @property-read string column_type
+ * @property-read string character_maximum_length
+ * @property-read string is_nullable
+ * @property-read string column_default
+ * @property-read string column_comment
+ * @property-read string table_catalog
+ * @property-read string udt_name
  */
 class PostgresqlColumn extends Model implements ColumnInterface
 {
@@ -20,6 +30,9 @@ class PostgresqlColumn extends Model implements ColumnInterface
      */
     protected $table = 'information_schema.columns';
 
+    /**
+     * @var string[]
+     */
     protected $appends = [
         'is_primary_key',
         'is_unique',
@@ -30,6 +43,7 @@ class PostgresqlColumn extends Model implements ColumnInterface
         'not_null',
         'default',
         'comment',
+        'foreign',
     ];
 
     /**
@@ -49,51 +63,81 @@ class PostgresqlColumn extends Model implements ColumnInterface
         });
     }
 
+    /**
+     * @return Table
+     */
     public function table(): Table
     {
         return $this->table_name;
     }
 
+    /**
+     * @return boolean
+     */
     public function getIsPrimaryKeyAttribute(): bool
     {
         return $this->primaryKey === $this->column_name;
     }
 
+    /**
+     * @return boolean
+     */
     public function getIsUniqueAttribute(): bool
     {
         return false;
     }
 
+    /**
+     * @return string
+     */
     public function getNameAttribute(): string
     {
         return $this->column_name;
     }
 
+    /**
+     * @return string
+     */
     public function getTypeAttribute(): string
     {
         return $this->udt_name;
     }
 
+    /**
+     * @return integer|null
+     */
     public function getLengthAttribute(): ?int
     {
         return $this->character_maximum_length;
     }
 
+    /**
+     * @return boolean
+     */
     public function getNullableAttribute(): bool
     {
         return $this->is_nullable === 'YES';
     }
 
+    /**
+     * @return boolean
+     */
     public function getNotNullAttribute(): bool
     {
         return $this->is_nullable === 'NO';
     }
 
+    /**
+     * @return mixed
+     */
     public function getDefaultAttribute()
     {
         return $this->column_default;
     }
 
+    /**
+     * @return string
+     */
     public function getCommentAttribute(): string
     {
         $row = DB::table('pg_description')
@@ -107,5 +151,19 @@ class PostgresqlColumn extends Model implements ColumnInterface
             ->first('description');
 
         return $row->description ?? '';
+    }
+
+    /**
+     * @return Builder|Model|object|null
+     */
+    public function getForeignAttribute()
+    {
+        return PostgresqlConstraint::query()
+            ->where([
+                ['table_catalog', '=', $this->table_catalog],
+                ['table_name', '=', $this->table_name],
+                ['referencing_column_name', '=', $this->column_name],
+            ])
+            ->first();
     }
 }

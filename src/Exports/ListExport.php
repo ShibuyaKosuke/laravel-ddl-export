@@ -2,6 +2,7 @@
 
 namespace ShibuyaKosuke\LaravelDdlExport\Exports;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithEvents;
@@ -11,6 +12,10 @@ use Maatwebsite\Excel\Events\AfterSheet;
 use ShibuyaKosuke\LaravelDdlExport\Exports\Concerns\ExcelMacro;
 use ShibuyaKosuke\LaravelDdlExport\Models\Contracts\TableInterface;
 
+/**
+ * Class ListExport
+ * @package ShibuyaKosuke\LaravelDdlExport\Exports
+ */
 class ListExport implements FromCollection, WithTitle, WithHeadings, WithEvents
 {
     use ExcelMacro;
@@ -20,11 +25,18 @@ class ListExport implements FromCollection, WithTitle, WithHeadings, WithEvents
      */
     private $tables;
 
+    /**
+     * ListExport constructor.
+     * @param Collection|TableInterface[] $tables
+     */
     public function __construct($tables)
     {
         $this->tables = $tables;
     }
 
+    /**
+     * @return \Illuminate\Support\Collection
+     */
     public function collection()
     {
         return $this->tables->map(function (TableInterface $table) {
@@ -36,6 +48,9 @@ class ListExport implements FromCollection, WithTitle, WithHeadings, WithEvents
         });
     }
 
+    /**
+     * @return \Closure[]
+     */
     public function registerEvents(): array
     {
         return [
@@ -47,11 +62,17 @@ class ListExport implements FromCollection, WithTitle, WithHeadings, WithEvents
         ];
     }
 
+    /**
+     * @return string
+     */
     public function title(): string
     {
         return config('app.name');
     }
 
+    /**
+     * @return string[]
+     */
     public function headings(): array
     {
         return [

@@ -2,6 +2,7 @@
 
 namespace ShibuyaKosuke\LaravelDdlExport\Exports;
 
+use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
@@ -9,6 +10,10 @@ use Maatwebsite\Excel\Events\BeforeExport;
 use Maatwebsite\Excel\Events\BeforeWriting;
 use ShibuyaKosuke\LaravelDdlExport\Models\Contracts\TableInterface;
 
+/**
+ * Class DdlExport
+ * @package ShibuyaKosuke\LaravelDdlExport\Exports
+ */
 class DdlExport implements WithMultipleSheets, WithEvents
 {
     use Exportable;
@@ -25,8 +30,8 @@ class DdlExport implements WithMultipleSheets, WithEvents
 
     /**
      * DdlExport constructor.
-     * @param $output
-     * @param $tables
+     * @param mixed $output
+     * @param Collection|TableInterface[] $tables
      */
     public function __construct($output, $tables)
     {

@@ -7,6 +7,10 @@ use ShibuyaKosuke\LaravelDdlExport\Exports\DdlExport;
 use ShibuyaKosuke\LaravelDdlExport\Facades\CreateView;
 use ShibuyaKosuke\LaravelDdlExport\Facades\Table;
 
+/**
+ * Class DbUtilitiesCommand
+ * @package ShibuyaKosuke\LaravelDdlExport\Console
+ */
 class DbUtilitiesCommand extends Command
 {
     /**
