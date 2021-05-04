@@ -20,14 +20,18 @@ class MysqlType implements TypeInterface
             'mediumint',
             'smallint',
             'tinyint',
+            'int',
+            'year',
         ],
         'numeric' => [
             'numeric',
+            'decimal',
         ],
         'string' => [
             'varchar',
             'char',
             'text',
+            'longtext',
         ],
         'boolean' => [
             'bool',
@@ -35,6 +39,7 @@ class MysqlType implements TypeInterface
         'date' => [
             'time',
             'date',
+            'datetime',
             'timestamp',
         ]
     ];
