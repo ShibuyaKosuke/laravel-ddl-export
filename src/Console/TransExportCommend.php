@@ -48,8 +48,14 @@ class TransExportCommend extends Command
 
         CreateView::down();
 
+        $locale = app()->getLocale();
+        $dir = sprintf('lang/%s', $locale);
+        if (!mkdir($dir) && !is_dir($dir)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $dir));
+        }
+
         File::put(
-            resource_path('lang/ja/columns.php'),
+            resource_path(sprintf('lang/%s/columns.php', $locale)),
             sprintf("<?php\n\nreturn %s;\n", Arr::export($response))
         );
     }
