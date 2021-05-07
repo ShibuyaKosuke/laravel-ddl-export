@@ -1,6 +1,6 @@
 {
   "name": "shibuyakosuke/laravel-ddl-export",
-  "description": "laravel-ddl-export",
+  "description": "Export Table definition to spreadsheet by artisan command.",
   "type": "library",
   "license": "MIT",
   "authors": [
@@ -11,7 +11,7 @@
   ],
   "require": {
     "php": "^7.4 | ^8.0",
-    "laravel/framework": "^7.0 | ^8.0",
+    "laravel/framework": "^6.0 | ^7.0 | ^8.0",
     "maatwebsite/excel": "^3.1"
   },
   "autoload": {
