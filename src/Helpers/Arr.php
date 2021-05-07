@@ -15,6 +15,6 @@ class Arr
     public static function export(array $array): string
     {
         $string = var_export($array, true);
-        return str_replace(array("\n  array (", "array (", ')', '  '), array('[', '[', ']', '    '), $string);
+        return str_replace(["\n  array (", "array (", ')', '  '], ['[', '[', ']', '    '], $string);
     }
 }

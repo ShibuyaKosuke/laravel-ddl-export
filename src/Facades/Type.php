@@ -4,6 +4,10 @@ namespace ShibuyaKosuke\LaravelDdlExport\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
+/**
+ * Class Type
+ * @package ShibuyaKosuke\LaravelDdlExport\Facades
+ */
 class Type extends Facade
 {
     /**
