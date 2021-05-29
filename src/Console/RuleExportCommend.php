@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\File;
 use ShibuyaKosuke\LaravelDdlExport\Facades\CreateView;
 use ShibuyaKosuke\LaravelDdlExport\Facades\Table;
 use ShibuyaKosuke\LaravelDdlExport\Facades\Type;
-use ShibuyaKosuke\LaravelDdlExport\Helpers\Arr;
 use ShibuyaKosuke\LaravelDdlExport\Models\Contracts\ColumnInterface;
 use ShibuyaKosuke\LaravelDdlExport\Models\Contracts\ConstraintInterface;
 use ShibuyaKosuke\LaravelDdlExport\Models\Contracts\TableInterface;
@@ -42,7 +41,7 @@ class RuleExportCommend extends Command
         $response = Table::all()->mapWithKeys(function (TableInterface $table) {
             return [
                 $table->name => $table->columns
-                    ->mapWithKeys(static function (ColumnInterface $column) {
+                    ->map(static function (ColumnInterface $column) {
                         /** @var ConstraintInterface $constraint */
                         $foreign = ($constraint = $column->foreign) ?
                             sprintf(
@@ -64,16 +63,29 @@ class RuleExportCommend extends Command
                         if ($foreign) {
                             $rules[] = $foreign;
                         }
-                        return [$column->name => $rules];
+                        $rules = array_map(function ($item) {
+                            return "'" . $item . "'";
+                        }, $rules);
+                        return [sprintf("'%s'", $column->name) . ' => [' . implode(', ', $rules) . '],'];
                     })
             ];
         })->toArray();
 
         CreateView::down();
 
+        $res = '[' . PHP_EOL;
+        foreach ($response as $tableName => $columns) {
+            $res .= "    '" . $tableName . '\' => [' . PHP_EOL;
+            foreach ($columns as $column) {
+                $res .= '        ' . $column[0] . PHP_EOL;
+            }
+            $res .= '    ],' . PHP_EOL;
+        }
+        $res .= ']';
+
         File::put(
             config_path('rules.php'),
-            sprintf("<?php\n\nreturn %s;\n", Arr::export($response))
+            sprintf("<?php\n\nreturn %s;\n", $res)
         );
     }
 }
