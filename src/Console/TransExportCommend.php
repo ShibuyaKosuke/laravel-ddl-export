@@ -49,8 +49,8 @@ class TransExportCommend extends Command
         CreateView::down();
 
         $locale = app()->getLocale();
-        $dir = sprintf('lang/%s', $locale);
-        if (!mkdir($dir) && !is_dir($dir)) {
+        $dir = resource_path(sprintf('lang/%s', $locale));
+        if (!file_exists($dir) && !mkdir($dir, true) && !is_dir($dir)) {
             throw new \RuntimeException(sprintf('Directory "%s" was not created', $dir));
         }
 
