@@ -7,7 +7,7 @@ For MySQL, PostgreSQL
 ## Install
 
 ```bash
-$ composer require shibuyakosuke/laravel-ddl-export
+$ composer require shibuyakosuke/laravel-ddl-export [--output=ddl.xlsx]
 ```
 
 ## Usage
