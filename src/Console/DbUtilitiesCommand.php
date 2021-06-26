@@ -18,7 +18,7 @@ class DbUtilitiesCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'ddl:export';
+    protected $signature = 'ddl:export {--output=}';
 
     /**
      * The console command description.
@@ -32,11 +32,19 @@ class DbUtilitiesCommand extends Command
      */
     public function handle(): void
     {
+        $output = $this->option('output') ?? 'ddl.xlsx';
+
+        if (!\Str::endsWith($output, '.xlsx')) {
+            $output .= '.xlsx';
+        }
+
         CreateView::up();
 
         $tables = Table::all();
 
-        (new DdlExport($this->getOutput(), $tables))->store('ddl.xlsx');
+        (new DdlExport($this->getOutput(), $tables))->store($output);
+
+        $this->output->success('Output: ' . storage_path($output));
 
         CreateView::down();
     }
