@@ -35,6 +35,9 @@ class PostgresqlType implements TypeInterface
             'time',
             'date',
             'timestamp',
+        ],
+        'float' => [
+            'float8',
         ]
     ];
 
