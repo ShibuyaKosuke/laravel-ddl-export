@@ -1,5 +1,7 @@
 # laravel-ddl-export
 
+Laravel プロジェクトから、テーブル定義書を xlsx 形式でエクスポートします！
+
 Export Table definition to spreadsheet by artisan command.
 
 For MySQL, PostgreSQL
