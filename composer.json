@@ -10,7 +10,7 @@
     }
   ],
   "require": {
-    "php": "^7.4 | ^8.0",
+    "php": "^7.4 | ^8.0 | ^8.1",
     "laravel/framework": "7.30.4 | ^8.0",
     "maatwebsite/excel": "^3.1"
   },
