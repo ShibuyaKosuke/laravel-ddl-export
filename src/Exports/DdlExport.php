@@ -2,6 +2,7 @@
 
 namespace ShibuyaKosuke\LaravelDdlExport\Exports;
 
+use Illuminate\Console\OutputStyle;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithEvents;
@@ -33,7 +34,7 @@ class DdlExport implements WithMultipleSheets, WithEvents
      * @param mixed $output
      * @param Collection|TableInterface[] $tables
      */
-    public function __construct($output, $tables)
+    public function __construct(OutputStyle $output, Collection $tables)
     {
         $this->output = $output;
         $this->tables = $tables;

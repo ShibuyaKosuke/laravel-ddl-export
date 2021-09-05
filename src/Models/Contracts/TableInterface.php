@@ -13,6 +13,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read string name
  * @property-read string comment
  * @property-read Collection|ColumnInterface[] columns
+ * @property-read Collection|ColumnInterface[] indexes
+ * @property-read Collection|ColumnInterface[] referencing
+ * @property-read Collection|ColumnInterface[] referenced
  *
  */
 interface TableInterface

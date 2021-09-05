@@ -11,4 +11,4 @@ FROM information_schema.key_column_usage usg
                    ON usg.table_schema = cst.table_schema
                        AND usg.constraint_name = cst.constraint_name
 WHERE cst.constraint_type = 'FOREIGN KEY'
-  and usg.table_schema = 'bizocean_portal'
+  and usg.table_schema = ':DATABASE_NAME'

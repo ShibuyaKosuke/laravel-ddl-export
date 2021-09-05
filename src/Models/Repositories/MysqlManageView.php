@@ -23,7 +23,8 @@ class MysqlManageView implements ManageViewInterface
      */
     public function __construct()
     {
-        $this->sql = File::get(__DIR__ . '/../../sql/mysql_create_view.sql');
+        $sql = File::get(__DIR__ . '/../../sql/mysql_create_view.sql');
+        $this->sql = str_replace(':DATABASE_NAME', DB::getDatabaseName(), $sql);
     }
 
     /**
