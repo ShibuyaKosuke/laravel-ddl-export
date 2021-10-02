@@ -26,6 +26,7 @@ class MysqlType implements TypeInterface
         'numeric' => [
             'numeric',
             'decimal',
+            'double',
         ],
         'string' => [
             'varchar',
