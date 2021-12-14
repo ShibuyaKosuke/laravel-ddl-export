@@ -42,7 +42,10 @@ class MysqlType implements TypeInterface
             'date',
             'datetime',
             'timestamp',
-        ]
+        ],
+        'json' => [
+            'json',
+        ],
     ];
 
     /**
