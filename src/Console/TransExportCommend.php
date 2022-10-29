@@ -56,7 +56,7 @@ class TransExportCommend extends Command
         }
 
         File::put(
-            resource_path(sprintf('lang/%s/columns.php', $locale)),
+            $file,
             sprintf("<?php\n\nreturn %s;\n", Arr::export($response))
         );
     }
