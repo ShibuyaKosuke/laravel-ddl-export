@@ -12,6 +12,7 @@ use ShibuyaKosuke\LaravelDdlExport\Models\Contracts\TableInterface;
 
 /**
  * Class TransExportCommend
+ *
  * @package ShibuyaKosuke\LaravelDdlExport\Console
  */
 class TransExportCommend extends Command
@@ -48,12 +49,14 @@ class TransExportCommend extends Command
 
         CreateView::down();
 
-        $locale = App::getLocale();
-        $dir = App::langPath($locale);
+        $locale = \App::getLocale();
+        $dir = \App::langPath($locale);
 
         if (!file_exists($dir) && !mkdir($dir, true) && !is_dir($dir)) {
             throw new \RuntimeException(sprintf('Directory "%s" was not created', $dir));
         }
+
+        $file = $dir . '/columns.php';
 
         File::put(
             $file,
