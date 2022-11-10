@@ -10,6 +10,7 @@ use ShibuyaKosuke\LaravelDdlExport\Models\Table;
 
 /**
  * Class MysqlColumn
+ *
  * @package ShibuyaKosuk\LaravelDdlExport\Models\Repositories
  * @property-read Table TABLE_NAME
  * @property-read string COLUMN_NAME
@@ -129,15 +130,14 @@ class MysqlColumn extends Model implements ColumnInterface
     }
 
     /**
-     * @return Builder|Model|object|null
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object|null
      */
     public function getForeignAttribute()
     {
-        return PostgresqlConstraint::query()
+        return MysqlConstraint::query()
             ->where([
-                ['table_catalog', '=', $this->table_catalog],
-                ['table_name', '=', $this->table_name],
-                ['referencing_column_name', '=', $this->column_name],
+                ['table_name', '=', $this->TABLE_NAME],
+                ['referencing_column_name', '=', $this->COLUMN_NAME],
             ])
             ->first();
     }

@@ -71,7 +71,7 @@ class RuleExportCommend extends Command
             ];
         })->toArray();
 
-        CreateView::down();
+//        CreateView::down();
 
         $res = '[' . PHP_EOL;
         foreach ($response as $tableName => $columns) {
