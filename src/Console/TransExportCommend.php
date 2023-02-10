@@ -47,6 +47,10 @@ class TransExportCommend extends Command
             ];
         })->toArray();
 
+        $tables = Table::all()->mapWithKeys(function(TableInterface $table){
+            return [$table->TABLE_NAME => $table->TABLE_COMMENT];
+        })->toArray();
+
         CreateView::down();
 
         $locale = \App::getLocale();
@@ -56,11 +60,14 @@ class TransExportCommend extends Command
             throw new \RuntimeException(sprintf('Directory "%s" was not created', $dir));
         }
 
-        $file = $dir . '/columns.php';
+        File::put(
+            $dir . '/columns.php',
+            sprintf("<?php\n\nreturn %s;\n", Arr::export($response))
+        );
 
         File::put(
-            $file,
-            sprintf("<?php\n\nreturn %s;\n", Arr::export($response))
+            $dir . '/tables.php',
+            sprintf("<?php\n\nreturn %s;\n", Arr::export($tables))
         );
     }
 }
