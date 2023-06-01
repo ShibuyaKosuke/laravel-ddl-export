@@ -47,7 +47,7 @@ class TransExportCommend extends Command
             ];
         })->toArray();
 
-        $tables = Table::all()->mapWithKeys(function(TableInterface $table){
+        $tables = Table::all()->mapWithKeys(function (TableInterface $table) {
             return [$table->TABLE_NAME => $table->TABLE_COMMENT];
         })->toArray();
 
@@ -59,6 +59,8 @@ class TransExportCommend extends Command
         if (!file_exists($dir) && !mkdir($dir, true) && !is_dir($dir)) {
             throw new \RuntimeException(sprintf('Directory "%s" was not created', $dir));
         }
+        $old = require($dir . '/columns.php');
+        $response = array_merge($response, $old);
 
         File::put(
             $dir . '/columns.php',
