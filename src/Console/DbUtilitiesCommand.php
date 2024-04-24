@@ -40,9 +40,7 @@ class DbUtilitiesCommand extends Command
 
         CreateView::up();
 
-        $tables = Table::all();
-
-        (new DdlExport($this->getOutput(), $tables))->store($output);
+        (new DdlExport($this->getOutput()))->store($output);
 
         $this->output->success('Output: ' . storage_path($output));
 

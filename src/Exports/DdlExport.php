@@ -9,6 +9,7 @@ use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 use Maatwebsite\Excel\Events\BeforeExport;
 use Maatwebsite\Excel\Events\BeforeWriting;
+use ShibuyaKosuke\LaravelDdlExport\Facades\Table;
 use ShibuyaKosuke\LaravelDdlExport\Models\Contracts\TableInterface;
 
 /**
@@ -31,13 +32,13 @@ class DdlExport implements WithMultipleSheets, WithEvents
 
     /**
      * DdlExport constructor.
-     * @param mixed $output
+     * @param OutputStyle|null $output
      * @param Collection|TableInterface[] $tables
      */
-    public function __construct(OutputStyle $output, Collection $tables)
+    public function __construct(OutputStyle $output = null)
     {
         $this->output = $output;
-        $this->tables = $tables;
+        $this->tables = Table::all();
     }
 
     /**
@@ -47,10 +48,14 @@ class DdlExport implements WithMultipleSheets, WithEvents
     {
         return [
             BeforeExport::class => function (BeforeExport $event) {
-                $this->output->writeln('Exporting...');
+                if ($this->output) {
+                    $this->output->writeln('Exporting...');
+                }
             },
             BeforeWriting::class => function (BeforeWriting $event) {
-                $this->output->writeln('Writing...');
+                if ($this->output) {
+                    $this->output->writeln('Writing...');
+                }
             },
         ];
     }
